@@ -1,3 +1,5 @@
+require("dotenv").config(); // Load environment variables
+
 const express = require("express");
 const app = express();
 
@@ -40,6 +42,12 @@ app.post("/webhook", (req, res) => {
   res.set("Content-Type", "text/xml");
   res.send(`<Response><Message>${reply}</Message></Response>`);
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Bot server running at http://localhost:${PORT}`);
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
